@@ -2,11 +2,15 @@ import styled from "styled-components";
 import { signInAPI } from "../redux/actions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
+
+  const navigate = useNavigate()
   return (
     <div>
       <Container>
+        {props.user && navigate("/home")}
         <Nav>
           <a href="/index.html">
             <img src="/public/images/login-logo.svg" alt="" />
@@ -23,7 +27,7 @@ const Login = (props) => {
           </Hero>
           <Form>
             <Google onClick={()=> props.signIn()}>
-              <img src="/public/images/google.svg" />
+              <img src="/images/google.svg" />
               Sign in with Google
             </Google>
           </Form>
@@ -162,6 +166,7 @@ const Google = styled.button`
 
 Login.propTypes = {
   signIn: PropTypes.func.isRequired, // التحقق من أن signIn هو دالة ومطلوب
+  user: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {

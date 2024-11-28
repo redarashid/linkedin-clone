@@ -1,4 +1,4 @@
-import * as actions from "../actions/actionType";
+import * as actions from "./actionType";
 
 export const setUser = (payload) => {
   return {
