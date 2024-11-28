@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { signInAPI } from "../redux/actions";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 const Login = (props) => {
   return (
@@ -21,7 +22,7 @@ const Login = (props) => {
             <img src="/public/images/login-hero.svg" alt="" />
           </Hero>
           <Form>
-            <Google >
+            <Google onClick={()=> props.signIn()}>
               <img src="/public/images/google.svg" />
               Sign in with Google
             </Google>
@@ -159,6 +160,10 @@ const Google = styled.button`
   }
 `;
 
+Login.propTypes = {
+  signIn: PropTypes.func.isRequired, // التحقق من أن signIn هو دالة ومطلوب
+};
+
 const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
@@ -167,7 +172,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch)=> {
   return {
-    SignIn : ()=> dispatch(signInAPI())
+    signIn : ()=> dispatch(signInAPI())
   }
 }
 
