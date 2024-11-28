@@ -1,6 +1,6 @@
 import { auth, provide } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
-import * as actions from "../actions";
+import * as actions from "../actions/action";
 
 export function signInAPI() {
   return (dispatch) => {
@@ -17,7 +17,7 @@ export function getUserAuth() {
   return (dispatch) => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        dispatch(actions.setUser(user));
+        dispatch(actions.setUser(user.payload));
       }
     });
   };

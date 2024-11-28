@@ -1,8 +1,8 @@
-import * as actions from "./actionType";
+import * as action from "./actionType";
 
-export const setUser = (payload) => {
+export const setUser = (user) => {
   return {
-    type: actions.SET_USER,
-    user: payload,
+    type: action.SET_USER,
+    user,
   };
 };
