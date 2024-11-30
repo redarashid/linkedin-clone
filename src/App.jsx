@@ -1,10 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import { connect } from "react-redux";
 import Home from "./components/Home";
 import Header from "./components/Header";
-import { getUserAuth } from "./redux/actions";
 import { useEffect } from "react";
+import { getUserAuth } from "./redux/actions";
 import RequireAuth from "./components/requireAuth";
 
 const App = (props) => {
@@ -13,7 +13,7 @@ const App = (props) => {
   }, [props]);
   return (
     <div>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route
@@ -26,7 +26,7 @@ const App = (props) => {
             }></Route>
           <Route path="*" element={<h1>Page not found</h1>}></Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 };
