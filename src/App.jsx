@@ -5,11 +5,12 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import { getUserAuth } from "./redux/actions";
 import { useEffect } from "react";
+import RequireAuth from "./components/requireAuth";
 
 const App = (props) => {
   useEffect(() => {
     props.getUserAuth();
-  });
+  }, [props]);
   return (
     <div>
       <BrowserRouter>
@@ -18,10 +19,10 @@ const App = (props) => {
           <Route
             path="/home"
             element={
-              <>
+              <RequireAuth>
                 <Home />
                 <Header />
-              </>
+              </RequireAuth>
             }></Route>
           <Route path="*" element={<h1>Page not found</h1>}></Route>
         </Routes>
