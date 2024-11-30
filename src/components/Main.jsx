@@ -2,6 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import PostModal from "./PostModal";
+import ReactPlayer from "react-player";
 
 const Main = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -262,7 +263,7 @@ const SharedActor = styled.div`
     top: 0;
     background: transparent;
     border: none;
-    ouline: none;
+    outline: none;
   }
 `;
 const Description = styled.div`
@@ -275,7 +276,7 @@ const Description = styled.div`
 const SharedImg = styled.div`
   margin-top: 8px;
   width: 100%;
-  diplay: block;
+  display: block;
   position: relative;
   background-color: #f9fafb;
   img {

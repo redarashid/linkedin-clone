@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import ReactPlayer from "react-player";
 import { Timestamp } from "firebase/firestore";
-
+import { postArticleAPI } from "../redux/actions";
 
 const PostModal = (props) => {
   const [editorText, setEditorText] = useState("");
@@ -37,17 +37,18 @@ const PostModal = (props) => {
     reset(e);
   };
 
+  const switchAssetArea = (area) => {
+    setShareImage("");
+    setVideoLink("");
+    setAssetArea(area);
+  };
+
   const reset = (e) => {
     setEditorText("");
     setShareImage("");
     setVideoLink("");
     setAssetArea("");
     props.handleClick(e);
-  };
-  const switchAssetArea = (area) => {
-    setShareImage("");
-    setVideoLink("");
-    setAssetArea(area);
   };
 
   return (
@@ -58,7 +59,7 @@ const PostModal = (props) => {
             <Header>
               <h2>Create a post</h2>
               <button onClick={reset}>
-                <img src="/public/images/close-icon.svg" alt="Close" />
+                <img src="/images/close-icon.svg" alt="Close" />
               </button>
             </Header>
             <ShareContent>

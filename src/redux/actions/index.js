@@ -1,7 +1,8 @@
-import { auth, provide } from "../../firebase";
+import { auth, db, provide, storage } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
 import * as actions from "../actions/action";
-import { getDownloadURL } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { collection, addDoc } from "firebase/firestore";
 
 export function signInAPI() {
   return (dispatch) => {
@@ -69,6 +70,37 @@ export function postArticleAPI(payload) {
           });
         }
       );
+      dispatch(actions.setLoading(false));
+    } else if (payload.video) {
+      const collRef = collection(db, "articles");
+      addDoc(collRef, {
+        actor: {
+          description: payload.user.email,
+          title: payload.user.displayName,
+          date: payload.timestamp,
+          image: payload.user.photoURL,
+        },
+        comments: 0,
+        video: payload.video,
+        description: payload.description,
+        shareImg: payload.image,
+      });
+      dispatch(actions.setLoading(false));
+    } else {
+      const collRef = collection(db, "articles");
+      addDoc(collRef, {
+        actor: {
+          description: payload.user.email,
+          title: payload.user.displayName,
+          date: payload.timestamp,
+          image: payload.user.photoURL,
+        },
+        comments: 0,
+        video: payload.video,
+        description: payload.description,
+        shareImg: payload.image,
+      });
+      dispatch(actions.setLoading(false));
     }
   };
 }
