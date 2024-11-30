@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import PostModal from "./PostModal";
 
 const Main = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -9,7 +10,6 @@ const Main = (props) => {
     setShowModal(!showModal);
   };
   return (
-    <div>
     <Container>
       <ShareBox>
         <div>
@@ -135,7 +135,8 @@ const CommonCard = styled.div`
   position: relative;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 1px rgb(0 0 0 / 20%);
 `;
-const ShareBox = styled(CommonCard)`
+
+const ShareBox = styled.div`
   display: flex;
   flex-direction: column;
   color: #958b7b;
@@ -202,6 +203,7 @@ const ShareBox = styled(CommonCard)`
     }
   }
 `;
+
 const Content = styled.div`
   text-align: center;
   & > img {
@@ -213,6 +215,7 @@ const Article = styled(CommonCard)`
   margin: 0 0 8px;
   overflow: visible;
 `;
+
 const SharedActor = styled.div`
   flex-wrap: nowrap;
   padding: 12px 16px 0;
@@ -336,6 +339,7 @@ const SocialActions = styled.div`
     }
   }
 `;
+
 const mapStateToProps = (state) => {
   return {
     loading: state.articleState.loading,
@@ -348,4 +352,5 @@ const mapDispatchToProps = (dispatch) => {
     getArticles: () => dispatch(getArticlesAPI()),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
