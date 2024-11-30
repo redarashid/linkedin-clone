@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 import { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -309,6 +310,8 @@ const UploadImage = styled.div`
 const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
+    user: state.userState.user,
+    articles: state.articleState.articles,
   };
 };
 const mapDispatchToProps = (dispatch) => {
