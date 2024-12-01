@@ -10,7 +10,7 @@ const Login = (props) => {
   const navigate = useNavigate()
   useEffect(()=>{
     props.user && navigate("/home");
-  }, [navigate, props.user])
+  }, [props.user])
   return (
     <div>
       <Container>

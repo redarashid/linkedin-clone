@@ -2,7 +2,13 @@ import { auth, db, provide, storage } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
 import * as actions from "../actions/action";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { collection, addDoc, query, orderBy, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+} from "firebase/firestore";
 
 export function signInAPI() {
   return (dispatch) => {
@@ -68,9 +74,9 @@ export function postArticleAPI(payload) {
               shareImg: downloadURl,
             });
           });
+          dispatch(actions.setLoading(false));
         }
       );
-      dispatch(actions.setLoading(false));
     } else if (payload.video) {
       const collRef = collection(db, "articles");
       addDoc(collRef, {

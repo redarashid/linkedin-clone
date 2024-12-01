@@ -10,7 +10,7 @@ import RequireAuth from "./components/requireAuth";
 const App = (props) => {
   useEffect(() => {
     props.getUserAuth();
-  }, [props]);
+  }, []);
   return (
     <div>
       <Router>

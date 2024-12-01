@@ -10,12 +10,11 @@ const Main = (props) => {
 
   const handleClick = () => {
     setShowModal(!showModal);
-
-    useEffect(() => {
-        props.getArticles();
-      }, []);
   };
-  
+  useEffect(() => {
+    props.getArticles();
+  }, []);
+
   return (
     <Container>
       <ShareBox>
